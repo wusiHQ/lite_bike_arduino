@@ -19,3 +19,5 @@ TagMapping.txt
 release-tools/buildinfo
 buck_gen/
 .#
+.project
+**/.metadata
