@@ -71,6 +71,8 @@ void loop()
       lockStatus = UNLOCK;
       stolenStatus = 0;
        Buzzer_Di(2);
+    } else if (inByte == 'F' || inByte == 'f') {
+      stolenStatus = 0;
     }
 
     Serial.println(inByte);
@@ -86,6 +88,9 @@ void loop()
     deltaZ = abs(cz - lastZ);
     if (deltaX + deltaY + deltaZ > MOVE_MAX && lastX > 0) {
       //lockStatus = UNLOCK;
+      if (stolenStatus == 0) {
+        Serial.print("S");
+      }
       stolenStatus = 1;
     }
     /*Serial.println('start');
