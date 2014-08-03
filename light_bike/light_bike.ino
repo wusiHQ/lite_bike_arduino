@@ -34,6 +34,15 @@ void Buzzer_Di(int times)
   }
 }
 
+void Buzzer_alarm() {
+  for(int i=0;i<20;i++)//输出一个频率的声音 
+    { 
+      digitalWrite(pinBuzzer,HIGH);//发声音 
+      delay(i);//延时1ms 
+      digitalWrite(pinBuzzer,LOW);//不发声音 
+      delay(1);//延时ms 
+    } 
+}
 void setup()
 {
   // start serial port at 115200 bps:
@@ -61,6 +70,7 @@ void loop()
     else if (inByte == 'U' || inByte == 'u'){
       lockStatus = UNLOCK;
       stolenStatus = 0;
+       Buzzer_Di(2);
     }
 
     Serial.println(inByte);
@@ -92,7 +102,7 @@ void loop()
 
   digitalWrite(led, lockStatus);   // turn the LED on (HIGH is the voltage level)
   if (stolenStatus == 1) {
-    Buzzer_Di(2);
+    Buzzer_alarm();
   }
   digitalWrite(pinS, stolenStatus);   // turn the LED on (HIGH is the voltage level)
 
